@@ -13,15 +13,35 @@ var leftPaddleY = canvas.height/2 - 50;
 var rightPaddleY = canvas.height/2 - 50;
 
 // Set up keyboard controls for both paddles
-var keys = [];
+var leftPaddleUp = false;
+var leftPaddleDown = false;
+var rightPaddleUp = false;
+var rightPaddleDown = false;
+
 document.addEventListener("keydown", function(event) {
-    keys[event.keyCode] = true;
-    console.log("Key down: " + event.keyCode);
+    if (event.keyCode === 87) { // W key
+        leftPaddleUp = true;
+    } else if (event.keyCode === 83) { // S key
+        leftPaddleDown = true;
+    } else if (event.keyCode === 38) { // Up arrow key
+        rightPaddleUp = true;
+    } else if (event.keyCode === 40) { // Down arrow key
+        rightPaddleDown = true;
+    }
 });
+
 document.addEventListener("keyup", function(event) {
-    delete keys[event.keyCode];
-    console.log("Key up: " + event.keyCode);
+    if (event.keyCode === 87) { // W key
+        leftPaddleUp = false;
+    } else if (event.keyCode === 83) { // S key
+        leftPaddleDown = false;
+    } else if (event.keyCode === 38) { // Up arrow key
+        rightPaddleUp = false;
+    } else if (event.keyCode === 40) { // Down arrow key
+        rightPaddleDown = false;
+    }
 });
+
 
 
 // Set up game modes
