@@ -18,6 +18,26 @@ var leftPaddleDown = false;
 var rightPaddleUp = false;
 var rightPaddleDown = false;
 
+canvas.addEventListener("click", function(event) {
+    var rect = canvas.getBoundingClientRect();
+    var x = event.clientX - rect.left;
+    var y = event.clientY - rect.top;
+    if (singlePlayerBtn.style.display !== "none" && x >= singlePlayerBtn.offsetLeft && x <= singlePlayerBtn.offsetLeft + singlePlayerBtn.offsetWidth &&
+        y >= singlePlayerBtn.offsetTop && y <= singlePlayerBtn.offsetTop + singlePlayerBtn.offsetHeight) {
+        gameMode = "singlePlayer";
+        singlePlayer = true;
+        singlePlayerBtn.style.display = "none";
+        twoPlayerBtn.style.display = "none";
+        canvas.style.display = "block";
+    } else if (twoPlayerBtn.style.display !== "none" && x >= twoPlayerBtn.offsetLeft && x <= twoPlayerBtn.offsetLeft + twoPlayerBtn.offsetWidth &&
+        y >= twoPlayerBtn.offsetTop && y <= twoPlayerBtn.offsetTop + twoPlayerBtn.offsetHeight) {
+        gameMode = "twoPlayer";
+        singlePlayerBtn.style.display = "none";
+        twoPlayerBtn.style.display = "none";
+        canvas.style.display = "block";
+    }
+});
+
 document.addEventListener("keydown", function(event) {
     if (event.keyCode === 87) { // W key
         leftPaddleUp = true;
