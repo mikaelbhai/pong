@@ -157,7 +157,7 @@ if (!rightPaddleUp && !rightPaddleDown && gameMode === "singlePlayer") {
         leftPaddleY += 5;
     }
 }
-
+}
 
 // Update the game every 10 milliseconds
 setInterval(draw, 10);
