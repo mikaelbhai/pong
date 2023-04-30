@@ -18,6 +18,19 @@ var leftPaddleDown = false;
 var rightPaddleUp = false;
 var rightPaddleDown = false;
 
+const singlePlayerBtn = document.getElementById("single-player-btn");
+
+singlePlayerBtn.addEventListener("click", function() {
+  // code to execute when the button is clicked goes here
+});
+
+const twoPlayerBtn = document.getElementById("two-player-btn");
+
+twoPlayerBtn.addEventListener("click", function() {
+  // code to execute when the button is clicked goes here
+});
+
+
 canvas.addEventListener("click", function(event) {
     var rect = canvas.getBoundingClientRect();
     var x = event.clientX - rect.left;
