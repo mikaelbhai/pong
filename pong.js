@@ -2,56 +2,23 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
-// Set initial canvas dimensions and position
-canvas.width = 800;
-canvas.height = 600;
-canvas.style.margin = "auto";
-canvas.style.display = "block";
-
 // Set initial ball position and velocity
 var ballX = canvas.width/2;
 var ballY = canvas.height/2;
 var ballSpeedX = 5;
 var ballSpeedY = 5;
-var ballSize = 10;
 
-// Set initial paddle positions and dimensions
-var paddleWidth = 10;
-var paddleHeight = 100;
-var paddleSpeed = 10;
-var leftPaddleX = 0;
-var leftPaddleY = canvas.height/2 - paddleHeight/2;
-var rightPaddleX = canvas.width - paddleWidth;
-var rightPaddleY = canvas.height/2 - paddleHeight/2;
+// Set initial paddle positions
+var leftPaddleY = canvas.height/2 - 50;
+var rightPaddleY = canvas.height/2 - 50;
 
-// Set game mode to single player by default
-var singlePlayer = true;
-
-// Set up keyboard controls for left and right paddles
+// Set up keyboard controls for both paddles
+var keys = [];
 document.addEventListener("keydown", function(event) {
-    if (singlePlayer) {
-        // Single player controls (left paddle)
-        if (event.keyCode == 87) { // W key
-            leftPaddleY -= paddleSpeed;
-        }
-        if (event.keyCode == 83) { // S key
-            leftPaddleY += paddleSpeed;
-        }
-    } else {
-        // Two player controls (left and right paddles)
-        if (event.keyCode == 87) { // W key
-            leftPaddleY -= paddleSpeed;
-        }
-        if (event.keyCode == 83) { // S key
-            leftPaddleY += paddleSpeed;
-        }
-        if (event.keyCode == 38) { // Up arrow
-            rightPaddleY -= paddleSpeed;
-        }
-        if (event.keyCode == 40) { // Down arrow
-            rightPaddleY += paddleSpeed;
-        }
-    }
+    keys[event.keyCode] = true;
+});
+document.addEventListener("keyup", function(event) {
+    delete keys[event.keyCode];
 });
 
 // Draw the game objects
@@ -62,31 +29,60 @@ function draw() {
 
     // Draw the ball
     ctx.fillStyle = "white";
-    ctx.fillRect(ballX - ballSize/2, ballY - ballSize/2, ballSize, ballSize);
+    ctx.fillRect(ballX-5, ballY-5, 10, 10);
 
     // Draw the paddles
-    ctx.fillStyle = "white";
-    ctx.fillRect(leftPaddleX, leftPaddleY, paddleWidth, paddleHeight);
-    ctx.fillRect(rightPaddleX, rightPaddleY, paddleWidth, paddleHeight);
+    ctx.fillRect(10, leftPaddleY, 10, 100);
+    ctx.fillRect(canvas.width-20, rightPaddleY, 10, 100);
 
     // Move the ball
     ballX += ballSpeedX;
     ballY += ballSpeedY;
 
     // Bounce the ball off the top and bottom walls
-    if (ballY < ballSize/2 || ballY > canvas.height - ballSize/2) {
+    if (ballY < 10 || ballY > canvas.height-10) {
         ballSpeedY = -ballSpeedY;
     }
 
     // Check if the ball collides with the left paddle
-    if (ballX < ballSize/2 + paddleWidth && ballY > leftPaddleY && ballY < leftPaddleY + paddleHeight) {
+    if (ballX < 30 && ballY > leftPaddleY && ballY < leftPaddleY + 100) {
         ballSpeedX = -ballSpeedX;
     }
 
     // Check if the ball collides with the right paddle
-    if (ballX > canvas.width - ballSize/2 - paddleWidth && ballY > rightPaddleY && ballY < rightPaddleY + paddleHeight) {
+    if (ballX > canvas.width-30 && ballY > rightPaddleY && ballY < rightPaddleY + 100) {
         ballSpeedX = -ballSpeedX;
     }
 
     // Check if the ball goes out of bounds
-    if (ballX <
+    if (ballX < 0 || ballX > canvas.width) {
+        ballX = canvas.width/2;
+        ballY = canvas.height/2;
+        ballSpeedX = -ballSpeedX;
+    }
+
+    // Move the right paddle towards the ball (single player mode)
+    if (keys[38] && rightPaddleY > 0) {
+        rightPaddleY -= 5;
+    }
+    if (keys[40] && rightPaddleY < canvas.height - 100) {
+        rightPaddleY += 5;
+    }
+
+    // Move both paddles (two player mode)
+    if (keys[87] && leftPaddleY > 0) {
+        leftPaddleY -= 5;
+    }
+    if (keys[83] && leftPaddleY < canvas.height - 100) {
+        leftPaddleY += 5;
+    }
+    if (keys[38] && rightPaddleY > 0) {
+        rightPaddleY -= 5;
+    }
+    if (keys[40] && rightPaddleY < canvas.height - 100) {
+        rightPaddleY += 5;
+    }
+}
+
+// Update the game every 10 milliseconds
+setInterval(draw, 10);
