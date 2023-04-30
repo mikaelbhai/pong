@@ -113,19 +113,26 @@ function draw() {
         }
     }
 
-    // Move both paddles (two player mode)
-    if (gameMode === "twoPlayer") {
+   // Move both paddles (two player mode) and move left paddle (single player mode)
+if (leftPaddleUp && leftPaddleY > 0) {
+    leftPaddleY -= 5;
+}
+if (leftPaddleDown && leftPaddleY < canvas.height - 100) {
+    leftPaddleY += 5;
+}
+if (rightPaddleUp && rightPaddleY > 0) {
+    rightPaddleY -= 5;
+}
+if (rightPaddleDown && rightPaddleY < canvas.height - 100) {
+    rightPaddleY += 5;
+}
+if (!rightPaddleUp && !rightPaddleDown && singlePlayer) {
+    // Move left paddle towards the ball (single player mode)
+    if (ballY < leftPaddleY + 50 && leftPaddleY > 0) {
         leftPaddleY -= 5;
     }
-    if (keys[83] && leftPaddleY < canvas.height - 100) {
+    if (ballY > leftPaddleY + 50 && leftPaddleY < canvas.height - 100) {
         leftPaddleY += 5;
-    }
-    if (keys[38] && rightPaddleY > 0) {
-        rightPaddleY -= 5;
-    }
-    if (keys[40] && rightPaddleY < canvas.height - 100) {
-        rightPaddleY += 5;
-
     }
 }
 
