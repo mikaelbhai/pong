@@ -1,98 +1,77 @@
-// Get the canvas and context
+// Initialize the canvas
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
-// Set up the game variables
-var ball = {
-    x: canvas.width/2,
-    y: canvas.height/2,
-    dx: 5,
-    dy: 5,
-    radius: 10
-};
-var player1 = {
-    x: 10,
-    y: canvas.height/2 - 50,
-    width: 10,
-    height: 100,
-    score: 0
-};
-var player2 = {
-    x: canvas.width - 20,
-    y: canvas.height/2 - 50,
-    width: 10,
-    height: 100,
-    score: 0
-};
-var keys = {};
+// Set initial ball position and velocity
+var ballX = canvas.width/2;
+var ballY = canvas.height/2;
+var ballSpeedX = 5;
+var ballSpeedY = 5;
 
-// Add event listeners for key presses
+// Set initial paddle positions
+var leftPaddleY = canvas.height/2 - 50;
+var rightPaddleY = canvas.height/2 - 50;
+
+// Set up keyboard controls for left paddle
 document.addEventListener("keydown", function(event) {
-    keys[event.keyCode] = true;
-});
-document.addEventListener("keyup", function(event) {
-    delete keys[event.keyCode];
+    if (event.keyCode == 38) {
+        leftPaddleY -= 10;
+    }
+    if (event.keyCode == 40) {
+        leftPaddleY += 10;
+    }
 });
 
-// Set up the game loop
-function gameLoop() {
-    // Move the players
-    if (keys[87]) {
-        player1.y -= 5;
-    }
-    if (keys[83]) {
-        player1.y += 5;
-    }
-    if (keys[38]) {
-        player2.y -= 5;
-    }
-    if (keys[40]) {
-        player2.y += 5;
-    }
+// Draw the game objects
+function draw() {
+    // Clear the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw the ball
+    ctx.beginPath();
+    ctx.arc(ballX, ballY, 10, 0, Math.PI*2);
+    ctx.fillStyle = "black";
+    ctx.fill();
+    ctx.closePath();
+
+    // Draw the paddles
+    ctx.fillRect(10, leftPaddleY, 10, 100);
+    ctx.fillRect(canvas.width-20, rightPaddleY, 10, 100);
 
     // Move the ball
-    ball.x += ball.dx;
-    ball.y += ball.dy;
+    ballX += ballSpeedX;
+    ballY += ballSpeedY;
 
-    // Check if the ball hits the top or bottom of the screen
-    if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
-        ball.dy = -ball.dy;
+    // Bounce the ball off the top and bottom walls
+    if (ballY < 10 || ballY > canvas.height-10) {
+        ballSpeedY = -ballSpeedY;
     }
 
-    // Check if the ball hits a player
-    if (ball.x - ball.radius < player1.x + player1.width && ball.y > player1.y && ball.y < player1.y + player1.height) {
-        ball.dx = -ball.dx;
-    } else if (ball.x + ball.radius > player2.x && ball.y > player2.y && ball.y < player2.y + player2.height) {
-        ball.dx = -ball.dx;
+    // Check if the ball collides with the left paddle
+    if (ballX < 30 && ballY > leftPaddleY && ballY < leftPaddleY + 100) {
+        ballSpeedX = -ballSpeedX;
     }
 
-    // Check if a player scores
-    if (ball.x - ball.radius < 0) {
-        player2.score++;
-        resetBall();
-    } else if (ball.x + ball.radius > canvas.width) {
-        player1.score++;
-        resetBall();
+    // Check if the ball collides with the right paddle
+    if (ballX > canvas.width-30 && ballY > rightPaddleY && ballY < rightPaddleY + 100) {
+        ballSpeedX = -ballSpeedX;
     }
 
-    // Draw the game objects
-    drawBackground();
-    drawBall();
-    drawPlayers();
-    drawScores();
+    // Check if the ball goes out of bounds
+    if (ballX < 0 || ballX > canvas.width) {
+        ballX = canvas.width/2;
+        ballY = canvas.height/2;
+        ballSpeedX = -ballSpeedX;
+    }
 
-    // Request another frame of animation
-    window.requestAnimationFrame(gameLoop);
+    // Move the right paddle towards the ball
+    if (ballY < rightPaddleY + 50) {
+        rightPaddleY -= 5;
+    }
+    if (ballY > rightPaddleY + 50) {
+        rightPaddleY += 5;
+    }
 }
 
-// Reset the ball to the center of the screen
-function resetBall() {
-    ball.x = canvas.width/2;
-    ball.y = canvas.height/2;
-    ball.dx = -ball.dx;
-}
-
-// Draw the background
-function drawBackground() {
-    ctx.fillStyle = "#FFFFFF";
-    ctx.fillRect(0,
+// Update the game every 10 milliseconds
+setInterval(draw, 10);
