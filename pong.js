@@ -16,10 +16,13 @@ var rightPaddleY = canvas.height/2 - 50;
 var keys = [];
 document.addEventListener("keydown", function(event) {
     keys[event.keyCode] = true;
+    console.log("Key down: " + event.keyCode);
 });
 document.addEventListener("keyup", function(event) {
     delete keys[event.keyCode];
+    console.log("Key up: " + event.keyCode);
 });
+
 
 // Set up game modes
 var gameMode = "";
