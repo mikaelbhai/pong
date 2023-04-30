@@ -121,16 +121,15 @@ function draw() {
         ballY = canvas.height/2;
         ballSpeedX = -ballSpeedX;
     }
-
-    // Move the right paddle towards the ball (single player mode)
-    if (gameMode === "singlePlayer") {
-        if (ballY < rightPaddleY + 50 && rightPaddleY > 0) {
-            rightPaddleY -= 5;
-        }
-        if (ballY > rightPaddleY + 50 && rightPaddleY < canvas.height - 100) {
-            rightPaddleY += 5;
-        }
+// Move the right paddle towards the ball (single player mode)
+if (gameMode === "singlePlayer") {
+    if (ballY < rightPaddleY + 50 && rightPaddleY > 0) {
+        rightPaddleY -= 5;
     }
+    if (ballY > rightPaddleY + 50 && rightPaddleY < canvas.height - 100) {
+        rightPaddleY += 5;
+    }
+} // <-- add this closing curly brace
 
    // Move both paddles (two player mode) and move left paddle (single player mode)
 if (leftPaddleUp && leftPaddleY > 0) {
