@@ -81,6 +81,7 @@ function draw() {
     }
     if (keys[40] && rightPaddleY < canvas.height - 100) {
         rightPaddleY += 5;
+
     }
 }
 
