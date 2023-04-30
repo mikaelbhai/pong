@@ -1,58 +1,41 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Pong Game</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      background-color: black;
-    }
+  <head>
+    <title>Pong Game</title>
+    <style>
+      canvas {
+        border: 1px solid black;
+        display: block;
+        margin: 0 auto;
+        transform: translate(0, 50%);
+      }
 
-    canvas {
-      display: block;
-      margin: auto;
-      border: 1px solid white;
-    }
+      #buttons-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transform: translate(0, -50%);
+      }
 
-    #canvas-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-    }
-
-    #button-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 50px;
-    }
-
-    button {
-      font-size: 20px;
-      margin: 0 20px;
-      padding: 10px 20px;
-      background-color: black;
-      color: white;
-      border: 1px solid white;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: white;
-      color: black;
-    }
-  </style>
-</head>
-<body>
-  <div id="canvas-container">
+      .button {
+        margin: 0 10px;
+      }
+    </style>
+  </head>
+  <body>
     <canvas id="canvas" width="800" height="600"></canvas>
-  </div>
-  <div id="button-container">
-    <button id="singleplayer-button">Single Player</button>
-    <button id="twoplayer-button">Two Player</button>
-  </div>
-  <script src="pong.js"></script>
-</body>
+
+    <div id="buttons-container">
+      <button class="button" id="single-player-btn">Single Player</button>
+      <button class="button" id="two-player-btn">Two Players</button>
+    </div>
+
+    <script src="pong.js"></script>
+  </body>
 </html>
+
