@@ -9,8 +9,21 @@
     </style>
 </head>
 <body>
-<canvas id="canvas" width="600" height="400"></canvas>
+    <canvas id="canvas" width="600" height="400"></canvas>
+    <button id="singlePlayerButton">Single Player</button>
+    <button id="twoPlayerButton">Two Players</button>
 
     <script src="pong.js"></script>
+    <script>
+        // Handle single player button click event
+        document.getElementById("singlePlayerButton").addEventListener("click", function() {
+            startGame(false);
+        });
+
+        // Handle two player button click event
+        document.getElementById("twoPlayerButton").addEventListener("click", function() {
+            startGame(true);
+        });
+    </script>
 </body>
 </html>
