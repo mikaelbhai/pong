@@ -68,11 +68,6 @@ var singlePlayer = false; // Declare and initialize singlePlayer variable
 var singlePlayerBtn = document.getElementById("single-player-btn");
 var twoPlayerBtn =
 
-// Set up game modes
-var gameMode = "";
-var singlePlayer = false; // Declare and initialize singlePlayer variable
-var singlePlayerBtn = document.getElementById("single-player-btn");
-var twoPlayerBtn = document.getElementById("two-player-btn");
 
 singlePlayerBtn.addEventListener("click", function() {
     gameMode = "singlePlayer";
