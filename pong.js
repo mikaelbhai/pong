@@ -21,6 +21,25 @@ document.addEventListener("keyup", function(event) {
     delete keys[event.keyCode];
 });
 
+// Set up game modes
+var gameMode = "";
+var singlePlayerBtn = document.getElementById("single-player-btn");
+var twoPlayerBtn = document.getElementById("two-player-btn");
+
+singlePlayerBtn.addEventListener("click", function() {
+    gameMode = "singlePlayer";
+    singlePlayerBtn.style.display = "none";
+    twoPlayerBtn.style.display = "none";
+    canvas.style.display = "block";
+});
+
+twoPlayerBtn.addEventListener("click", function() {
+    gameMode = "twoPlayer";
+    singlePlayerBtn.style.display = "none";
+    twoPlayerBtn.style.display = "none";
+    canvas.style.display = "block";
+});
+
 // Draw the game objects
 function draw() {
     // Clear the canvas
@@ -62,15 +81,17 @@ function draw() {
     }
 
     // Move the right paddle towards the ball (single player mode)
-    if (keys[38] && rightPaddleY > 0) {
-        rightPaddleY -= 5;
-    }
-    if (keys[40] && rightPaddleY < canvas.height - 100) {
-        rightPaddleY += 5;
+    if (gameMode === "singlePlayer") {
+        if (ballY < rightPaddleY + 50 && rightPaddleY > 0) {
+            rightPaddleY -= 5;
+        }
+        if (ballY > rightPaddleY + 50 && rightPaddleY < canvas.height - 100) {
+            rightPaddleY += 5;
+        }
     }
 
     // Move both paddles (two player mode)
-    if (keys[87] && leftPaddleY > 0) {
+    if (gameMode === "twoPlayer") {
         leftPaddleY -= 5;
     }
     if (keys[83] && leftPaddleY < canvas.height - 100) {
