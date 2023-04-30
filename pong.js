@@ -66,8 +66,7 @@ document.addEventListener("keyup", function(event) {
 var gameMode = "";
 var singlePlayer = false; // Declare and initialize singlePlayer variable
 var singlePlayerBtn = document.getElementById("single-player-btn");
-var twoPlayerBtn =
-
+var twoPlayerBtn = document.getElementById("two-player-btn");
 
 singlePlayerBtn.addEventListener("click", function() {
     gameMode = "singlePlayer";
