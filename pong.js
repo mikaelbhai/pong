@@ -18,11 +18,6 @@ var leftPaddleDown = false;
 var rightPaddleUp = false;
 var rightPaddleDown = false;
 
-
-const singlePlayerBtn = document.getElementById('single-player-btn');
-const twoPlayerBtn = document.getElementById('two-player-btn');
-
-
 canvas.addEventListener("click", function(event) {
     var rect = canvas.getBoundingClientRect();
     var x = event.clientX - rect.left;
@@ -70,7 +65,8 @@ document.addEventListener("keyup", function(event) {
 // Set up game modes
 var gameMode = "";
 var singlePlayer = false; // Declare and initialize singlePlayer variable
-
+var singlePlayerBtn = document.getElementById("single-player-btn");
+var twoPlayerBtn = document.getElementById("two-player-btn");
 
 singlePlayerBtn.addEventListener("click", function() {
     gameMode = "singlePlayer";
