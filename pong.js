@@ -42,15 +42,15 @@ document.addEventListener("keyup", function(event) {
     }
 });
 
-
-
 // Set up game modes
 var gameMode = "";
+var singlePlayer = false; // Declare and initialize singlePlayer variable
 var singlePlayerBtn = document.getElementById("single-player-btn");
 var twoPlayerBtn = document.getElementById("two-player-btn");
 
 singlePlayerBtn.addEventListener("click", function() {
     gameMode = "singlePlayer";
+    singlePlayer = true; // Set singlePlayer to true in single player mode
     singlePlayerBtn.style.display = "none";
     twoPlayerBtn.style.display = "none";
     canvas.style.display = "block";
@@ -85,7 +85,6 @@ function draw() {
     if (ballY < 10 || ballY > canvas.height-10) {
         ballSpeedY = -ballSpeedY;
     }
-
     // Check if the ball collides with the left paddle
     if (ballX < 30 && ballY > leftPaddleY && ballY < leftPaddleY + 100) {
         ballSpeedX = -ballSpeedX;
