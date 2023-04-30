@@ -39,9 +39,9 @@ canvas.addEventListener("click", function(event) {
 });
 
 document.addEventListener("keydown", function(event) {
-    if (event.keyCode === 87 || event.keyCode === 38) { // W key or up arrow key
+    if (event.keyCode === 87) { // W key
         leftPaddleUp = true;
-    } else if (event.keyCode === 83 || event.keyCode === 40) { // S key or down arrow key
+    } else if (event.keyCode === 83) { // S key
         leftPaddleDown = true;
     } else if (event.keyCode === 38) { // Up arrow key
         rightPaddleUp = true;
@@ -51,9 +51,9 @@ document.addEventListener("keydown", function(event) {
 });
 
 document.addEventListener("keyup", function(event) {
-    if (event.keyCode === 87 || event.keyCode === 38) { // W key or up arrow key
+    if (event.keyCode === 87) { // W key
         leftPaddleUp = false;
-    } else if (event.keyCode === 83 || event.keyCode === 40) { // S key or down arrow key
+    } else if (event.keyCode === 83) { // S key
         leftPaddleDown = false;
     } else if (event.keyCode === 38) { // Up arrow key
         rightPaddleUp = false;
