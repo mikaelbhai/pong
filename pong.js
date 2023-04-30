@@ -125,7 +125,7 @@ if (rightPaddleUp && rightPaddleY > 0) {
 if (rightPaddleDown && rightPaddleY < canvas.height - 100) {
     rightPaddleY += 5;
 }
-if (!rightPaddleUp && !rightPaddleDown && singlePlayer) {
+if (!rightPaddleUp && !rightPaddleDown && gameMode === "singlePlayer") {
     // Move left paddle towards the ball (single player mode)
     if (ballY < leftPaddleY + 50 && leftPaddleY > 0) {
         leftPaddleY -= 5;
@@ -134,6 +134,7 @@ if (!rightPaddleUp && !rightPaddleDown && singlePlayer) {
         leftPaddleY += 5;
     }
 }
+
 
 // Update the game every 10 milliseconds
 setInterval(draw, 10);
