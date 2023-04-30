@@ -13,14 +13,51 @@ var leftPaddleY = canvas.height/2 - 50;
 var rightPaddleY = canvas.height/2 - 50;
 
 // Set up keyboard controls for left paddle
+var leftPaddleMovingUp = false;
+var leftPaddleMovingDown = false;
+
 document.addEventListener("keydown", function(event) {
     if (event.keyCode == 38) {
-        leftPaddleY -= 5;
+        leftPaddleMovingUp = true;
     }
     if (event.keyCode == 40) {
-        leftPaddleY += 5;
+        leftPaddleMovingDown = true;
     }
 });
+
+document.addEventListener("keyup", function(event) {
+    if (event.keyCode == 38) {
+        leftPaddleMovingUp = false;
+    }
+    if (event.keyCode == 40) {
+        leftPaddleMovingDown = false;
+    }
+});
+
+// Move the left paddle
+function moveLeftPaddle() {
+    if (leftPaddleMovingUp) {
+        leftPaddleY -= 10;
+    }
+    if (leftPaddleMovingDown) {
+        leftPaddleY += 10;
+    }
+}
+
+// Draw the game objects
+function draw() {
+    // Clear the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw the ball and paddles
+    // ...
+
+    // Move the left paddle
+    moveLeftPaddle();
+
+    // ...
+}
+
 
 // Draw the game objects
 function draw() {
