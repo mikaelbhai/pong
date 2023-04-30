@@ -18,17 +18,9 @@ var leftPaddleDown = false;
 var rightPaddleUp = false;
 var rightPaddleDown = false;
 
-const singlePlayerBtn = document.getElementById("single-player-btn");
 
-singlePlayerBtn.addEventListener("click", function() {
-  // code to execute when the button is clicked goes here
-});
-
-const twoPlayerBtn = document.getElementById("two-player-btn");
-
-twoPlayerBtn.addEventListener("click", function() {
-  // code to execute when the button is clicked goes here
-});
+const singlePlayerBtn = document.getElementById('single-player-btn');
+const twoPlayerBtn = document.getElementById('two-player-btn');
 
 
 canvas.addEventListener("click", function(event) {
