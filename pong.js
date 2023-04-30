@@ -39,9 +39,9 @@ canvas.addEventListener("click", function(event) {
 });
 
 document.addEventListener("keydown", function(event) {
-    if (event.keyCode === 87) { // W key
+    if (event.keyCode === 87 || event.keyCode === 38) { // W key or up arrow key
         leftPaddleUp = true;
-    } else if (event.keyCode === 83) { // S key
+    } else if (event.keyCode === 83 || event.keyCode === 40) { // S key or down arrow key
         leftPaddleDown = true;
     } else if (event.keyCode === 38) { // Up arrow key
         rightPaddleUp = true;
@@ -51,9 +51,9 @@ document.addEventListener("keydown", function(event) {
 });
 
 document.addEventListener("keyup", function(event) {
-    if (event.keyCode === 87) { // W key
+    if (event.keyCode === 87 || event.keyCode === 38) { // W key or up arrow key
         leftPaddleUp = false;
-    } else if (event.keyCode === 83) { // S key
+    } else if (event.keyCode === 83 || event.keyCode === 40) { // S key or down arrow key
         leftPaddleDown = false;
     } else if (event.keyCode === 38) { // Up arrow key
         rightPaddleUp = false;
@@ -61,6 +61,12 @@ document.addEventListener("keyup", function(event) {
         rightPaddleDown = false;
     }
 });
+
+// Set up game modes
+var gameMode = "";
+var singlePlayer = false; // Declare and initialize singlePlayer variable
+var singlePlayerBtn = document.getElementById("single-player-btn");
+var twoPlayerBtn =
 
 // Set up game modes
 var gameMode = "";
