@@ -183,6 +183,9 @@ function draw() {
         ballY = canvas.height/2;
         ballSpeedX = -ballSpeedX;
     }
+          // update the score
+    updateScore();
+}
 // Move the right paddle towards the ball (single player mode)
 if (gameMode === "singlePlayer") {
     if (ballY < rightPaddleY + 50 && rightPaddleY > 0) {
