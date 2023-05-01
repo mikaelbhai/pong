@@ -121,13 +121,6 @@ function draw() {
         ballY = canvas.height/2;
         ballSpeedX = -ballSpeedX;
     }
-    if self.rect.colliderect(left_paddle.rect):
-    if self.rect.right >= left_paddle.rect.left and self.velocity.x < 0:
-        self.velocity.x = -self.velocity.x
-elif self.rect.colliderect(right_paddle.rect):
-    if self.rect.left <= right_paddle.rect.right and self.velocity.x > 0:
-        self.velocity.x = -self.velocity.x
-
 // Move the right paddle towards the ball (single player mode)
 if (gameMode === "singlePlayer") {
     if (ballY < rightPaddleY + 50 && rightPaddleY > 0) {
