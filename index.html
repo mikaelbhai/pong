@@ -9,15 +9,14 @@
 <body>
     <div class="container">
         <h1>Pong Game</h1>
-            <p>Left player: <span id="left-points">0</span></p>
-    <p>Right player: <span id="right-points">0</span></p>
-
         <div class="buttons">
             <button id="single-player-btn" type="button">Single Player</button>
             <button id="two-player-btn" type="button">Two Players</button>
         </div>
         <canvas id="canvas" width="800" height="600"></canvas>
-    </div>
+        <div id="scoreboard">
+            <span id="left-score">0</span> - <span id="right-score">0</span>
+        </div>
 
     <script src="pong.js"></script>
 </body>
