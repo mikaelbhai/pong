@@ -2,7 +2,6 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
-
 // Set initial ball position and velocity
 var ballX = canvas.width/2;
 var ballY = canvas.height/2;
@@ -23,62 +22,6 @@ var leftPaddleUp = false;
 var leftPaddleDown = false;
 var rightPaddleUp = false;
 var rightPaddleDown = false;
-
-// initialize points for each player
-var LeftPoints = 0;
-var RightPoints = 0;
-var PlayerPoints = 0;
-var BotPoints = 0;
-
-// assume single player mode by default
-var isSinglePlayerMode = true;
-const leftPointsElement = document.getElementById("left-points");
-      const rightPointsElement = document.getElementById("right-points");
-
-      // Update the score when a point is scored
-      function scorePoint(player) {
-        if (player === "left") {
-          LeftPoints++;
-          leftPointsElement.textContent = LeftPoints;
-        } else if (player === "right") {
-          RightPoints++;
-          rightPointsElement.textContent = RightPoints;
-        }
-      }
-
-
-
-// function to update points based on who scored
-function updatePoints(player) {
-  if (player === "left") {
-    if (isSinglePlayerMode) {
-      BotPoints += 1;
-    } else {
-      RightPoints += 1;
-    }
-  } else if (player === "right") {
-    if (isSinglePlayerMode) {
-      PlayerPoints += 1;
-    } else {
-      LeftPoints += 1;
-    }
-  }
-}
-
-// example usage: player on the left scored in single player mode
-updatePoints("left");
-
-// example usage: player on the right scored in two player mode
-isSinglePlayerMode = false;
-updatePoints("right");
-
-var scoreboard = document.getElementById("scoreboard");
-var leftScore = document.getElementById("left-score");
-var rightScore = document.getElementById("right-score");
-
-// Update the scoreboard
-leftScore.textContent = LeftPoints;
-rightScore.textContent = RightPoints;
 
 canvas.addEventListener("click", function(event) {
     var rect = canvas.getBoundingClientRect();
@@ -183,9 +126,6 @@ function draw() {
         ballY = canvas.height/2;
         ballSpeedX = -ballSpeedX;
     }
-          // update the score
-    updateScore();
-}
 // Move the right paddle towards the ball (single player mode)
 if (gameMode === "singlePlayer") {
     if (ballY < rightPaddleY + 50 && rightPaddleY > 0) {
@@ -218,10 +158,8 @@ if (leftPaddleUp && leftPaddleY > 0) {
 if (leftPaddleDown && leftPaddleY < canvas.height - 100) {
     leftPaddleY += paddleSpeed;
 }
-   // add this line to call updateScore() at the end of draw()
-updateScore(); 
 }
-
+}
 
 // Update the game every 10 milliseconds
 setInterval(draw, 10);
