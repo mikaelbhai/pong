@@ -46,6 +46,8 @@ const leftPointsElement = document.getElementById("left-points");
         }
       }
 
+
+
 // function to update points based on who scored
 function updatePoints(player) {
   if (player === "left") {
@@ -69,6 +71,10 @@ updatePoints("left");
 // example usage: player on the right scored in two player mode
 isSinglePlayerMode = false;
 updatePoints("right");
+
+// update score display
+document.getElementById("player-score").textContent = PlayerPoints;
+document.getElementById("bot-score").textContent = BotPoints;
 
 canvas.addEventListener("click", function(event) {
     var rect = canvas.getBoundingClientRect();
