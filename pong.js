@@ -8,6 +8,11 @@ var ballY = canvas.height/2;
 var ballSpeedX = 5;
 var ballSpeedY = 5;
 
+var LeftPoints = "0"
+var RightPoints = "0"
+var PlayerPoints = "0"
+var BotPoints = "0"
+
 // Set initial paddle positions
 var leftPaddleY = canvas.height/2 - 50;
 var rightPaddleY = canvas.height/2 - 50;
@@ -17,6 +22,39 @@ var leftPaddleUp = false;
 var leftPaddleDown = false;
 var rightPaddleUp = false;
 var rightPaddleDown = false;
+
+// initialize points for each player
+var LeftPoints = 0;
+var RightPoints = 0;
+var PlayerPoints = 0;
+var BotPoints = 0;
+
+// assume single player mode by default
+var isSinglePlayerMode = true;
+
+// function to update points based on who scored
+function updatePoints(player) {
+  if (player === "left") {
+    if (isSinglePlayerMode) {
+      BotPoints += 1;
+    } else {
+      RightPoints += 1;
+    }
+  } else if (player === "right") {
+    if (isSinglePlayerMode) {
+      PlayerPoints += 1;
+    } else {
+      LeftPoints += 1;
+    }
+  }
+}
+
+// example usage: player on the left scored in single player mode
+updatePoints("left");
+
+// example usage: player on the right scored in two player mode
+isSinglePlayerMode = false;
+updatePoints("right");
 
 canvas.addEventListener("click", function(event) {
     var rect = canvas.getBoundingClientRect();
