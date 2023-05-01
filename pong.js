@@ -32,6 +32,19 @@ var BotPoints = 0;
 
 // assume single player mode by default
 var isSinglePlayerMode = true;
+const leftPointsElement = document.getElementById("left-points");
+      const rightPointsElement = document.getElementById("right-points");
+
+      // Update the score when a point is scored
+      function scorePoint(player) {
+        if (player === "left") {
+          LeftPoints++;
+          leftPointsElement.textContent = LeftPoints;
+        } else if (player === "right") {
+          RightPoints++;
+          rightPointsElement.textContent = RightPoints;
+        }
+      }
 
 // function to update points based on who scored
 function updatePoints(player) {
