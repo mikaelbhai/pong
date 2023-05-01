@@ -18,6 +18,11 @@ var leftPaddleDown = false;
 var rightPaddleUp = false;
 var rightPaddleDown = false;
 
+let leftScore = 0;
+let rightScore = 0;
+let gameOver = false;
+
+
 canvas.addEventListener("click", function(event) {
     var rect = canvas.getBoundingClientRect();
     var x = event.clientX - rect.left;
@@ -83,11 +88,32 @@ twoPlayerBtn.addEventListener("click", function() {
     canvas.style.display = "block";
 });
 
+function resetBall() {
+  ball.x = canvas.width / 2;
+  ball.y = canvas.height / 2;
+  ball.speed = 5;
+  ball.velocityX = -ball.velocityX;
+  paddle1.y = canvas.height / 2 - paddle1.height / 2;
+  paddle2.y = canvas.height / 2 - paddle2.height / 2;
+}
+
 // Draw the game objects
 function draw() {
-    // Clear the canvas
+  // Clear the canvas
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // draw paddles and ball
+  if (!gameOver) {
+    drawPaddle(paddle1);
+    drawPaddle(paddle2);
+    drawBall(ball);
+  }
+
+  // draw scores
+  ctx.fillText("Score: " + leftScore, 100, 100);
+  ctx.fillText("Score: " + rightScore, canvas.width - 100, 100);
+}
 
     // Draw the ball
     ctx.fillStyle = "white";
@@ -130,6 +156,22 @@ if (gameMode === "singlePlayer") {
         rightPaddleY += 5;
     }
 } // <-- add this closing curly brace
+if (ball.x + ball.radius > canvas.width) {
+  // ball hit right wall, left scores
+  leftScore++;
+  resetBall();
+} else if (ball.x - ball.radius < 0) {
+  // ball hit left wall, right scores
+  rightScore++;
+  resetBall();
+}
+if (leftScore >= 5) {
+  gameOver = true;
+  alert("Left wins!");
+} else if (rightScore >= 5) {
+  gameOver = true;
+  alert("Right wins!");
+}
 
    // Move both paddles (two player mode) and move left paddle (single player mode)
 if (leftPaddleUp && leftPaddleY > 0) {
