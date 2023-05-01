@@ -33,7 +33,7 @@ function setup() {
 function update() {
   // ...
   if (ball.x + ball.size / 2 > width) {
-    // right wall collision logic
+    if (object.x + object.width >= canvas.width) {
   }
   // ...
 }
