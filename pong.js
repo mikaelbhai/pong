@@ -2,6 +2,11 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
+<div class="score">
+    <span id="player-score">0</span> - <span id="bot-score">0</span>
+</div>
+
+
 // Set initial ball position and velocity
 var ballX = canvas.width/2;
 var ballY = canvas.height/2;
