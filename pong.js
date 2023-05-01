@@ -22,6 +22,21 @@ let leftScore = 0;
 let rightScore = 0;
 let gameOver = false;
 
+let ball;
+
+function setup() {
+  // ...
+  ball = new Ball();
+  // ...
+}
+
+function update() {
+  // ...
+  if (ball.x + ball.size / 2 > width) {
+    // right wall collision logic
+  }
+  // ...
+}
 
 canvas.addEventListener("click", function(event) {
     var rect = canvas.getBoundingClientRect();
