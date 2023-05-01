@@ -146,11 +146,12 @@ if (rightPaddleDown && rightPaddleY < canvas.height - 100) {
 }
 if (!rightPaddleUp && !rightPaddleDown && gameMode === "singlePlayer") {
     // Move left paddle towards the ball (single player mode)
+var paddleSpeed = 3; // set the paddle speed
 if (leftPaddleUp && leftPaddleY > 0) {
-    leftPaddleY -= 5;
+    leftPaddleY -= paddleSpeed;
 }
 if (leftPaddleDown && leftPaddleY < canvas.height - 100) {
-    leftPaddleY += 5;
+    leftPaddleY += paddleSpeed;
 }
 }
 }
