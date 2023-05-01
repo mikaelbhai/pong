@@ -218,9 +218,9 @@ if (leftPaddleUp && leftPaddleY > 0) {
 if (leftPaddleDown && leftPaddleY < canvas.height - 100) {
     leftPaddleY += paddleSpeed;
 }
+   // add this line to call updateScore() at the end of draw()
+updateScore(); 
 }
-// add this line to call updateScore() at the end of draw()
-updateScore();
 }
 
 // Update the game every 10 milliseconds
