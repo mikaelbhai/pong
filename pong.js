@@ -221,7 +221,7 @@ if (leftPaddleDown && leftPaddleY < canvas.height - 100) {
    // add this line to call updateScore() at the end of draw()
 updateScore(); 
 }
-}
+
 
 // Update the game every 10 milliseconds
 setInterval(draw, 10);
