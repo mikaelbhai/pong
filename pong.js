@@ -1,3 +1,23 @@
+// Initialize the canvas and context
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+
+// Set initial ball position and velocity
+var ballX = canvas.width/2;
+var ballY = canvas.height/2;
+var ballSpeedX = 5;
+var ballSpeedY = 5;
+
+// Set initial paddle positions
+var leftPaddleY = canvas.height/2 - 50;
+var rightPaddleY = canvas.height/2 - 50;
+
+// Set up keyboard controls for both paddles
+var leftPaddleUp = false;
+var leftPaddleDown = false;
+var rightPaddleUp = false;
+var rightPaddleDown = false;
+
 canvas.addEventListener("click", function(event) {
     var rect = canvas.getBoundingClientRect();
     var x = event.clientX - rect.left;
