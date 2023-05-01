@@ -72,9 +72,13 @@ updatePoints("left");
 isSinglePlayerMode = false;
 updatePoints("right");
 
-// update score display
-document.getElementById("player-score").textContent = PlayerPoints;
-document.getElementById("bot-score").textContent = BotPoints;
+var scoreboard = document.getElementById("scoreboard");
+var leftScore = document.getElementById("left-score");
+var rightScore = document.getElementById("right-score");
+
+// Update the scoreboard
+leftScore.textContent = LeftPoints;
+rightScore.textContent = RightPoints;
 
 canvas.addEventListener("click", function(event) {
     var rect = canvas.getBoundingClientRect();
