@@ -7,8 +7,6 @@ var ballX = canvas.width/2;
 var ballY = canvas.height/2;
 var ballSpeedX = 5;
 var ballSpeedY = 5;
-var ballPrevX = ballX;
-var ballPrevY = ballY;
 
 // Set initial paddle positions
 var leftPaddleY = canvas.height/2 - 50;
@@ -123,25 +121,6 @@ function draw() {
         ballY = canvas.height/2;
         ballSpeedX = -ballSpeedX;
     }
-    // Check if the ball has collided with the left paddle in the previous frame
-if (ballPrevX < 30 && ballPrevY > leftPaddleY && ballPrevY < leftPaddleY + 100 &&
-    ballX >= 30 && (ballY <= leftPaddleY || ballY >= leftPaddleY + 100)) {
-    // Adjust the ball's position so that it is no longer inside the left paddle
-    ballX = 30;
-    if (ballSpeedX < 0) {
-        ballSpeedX = -ballSpeedX;
-    }
-}
-
-// Check if the ball has collided with the right paddle in the previous frame
-if (ballPrevX > canvas.width-30 && ballPrevY > rightPaddleY && ballPrevY < rightPaddleY + 100 &&
-    ballX <= canvas.width-30 && (ballY <= rightPaddleY || ballY >= rightPaddleY + 100)) {
-    // Adjust the ball's position so that it is no longer inside the right paddle
-    ballX = canvas.width-30;
-    if (ballSpeedX > 0) {
-        ballSpeedX = -ballSpeedX;
-    }
-}
 // Move the right paddle towards the ball (single player mode)
 if (gameMode === "singlePlayer") {
     if (ballY < rightPaddleY + 50 && rightPaddleY > 0) {
