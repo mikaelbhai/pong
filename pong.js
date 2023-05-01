@@ -156,4 +156,4 @@ if (leftPaddleDown && leftPaddleY < canvas.height - 100) {
 }
 
 // Update the game every 10 milliseconds
-setInterval(draw, 20);
+setInterval(draw, 10);
